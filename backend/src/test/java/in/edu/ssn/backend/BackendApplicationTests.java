@@ -1,10 +1,10 @@
-package in.edu.ssn.FarmToMarket;
+package in.edu.ssn.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FarmToMarketApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

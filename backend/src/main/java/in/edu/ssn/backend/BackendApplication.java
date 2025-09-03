@@ -1,13 +1,13 @@
-package in.edu.ssn.FarmToMarket;
+package in.edu.ssn.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FarmToMarketApplication {
+public class BackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FarmToMarketApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
 
 }
