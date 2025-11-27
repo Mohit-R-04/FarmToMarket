@@ -43,78 +43,147 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Farm Theme - Light Mode */
+  /* Background: Soft Cream / Off-white */
+  --background: oklch(0.98 0.01 100);
+  /* Foreground: Deep Earthy Brown */
+  --foreground: oklch(0.25 0.04 50);
+
+  /* Card: Slightly lighter than background or white */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.25 0.04 50);
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --popover-foreground: oklch(0.25 0.04 50);
+
+  /* Primary: Rich Forest Green */
+  --primary: oklch(0.45 0.14 145);
+  --primary-foreground: oklch(0.98 0.01 100);
+
+  /* Secondary: Sage / Moss Green */
+  --secondary: oklch(0.92 0.06 145);
+  --secondary-foreground: oklch(0.35 0.08 145);
+
+  /* Muted: Soft Earthy Grey */
+  --muted: oklch(0.94 0.03 95);
+  --muted-foreground: oklch(0.55 0.04 95);
+
+  /* Accent: Harvest Gold / Warm Terracotta */
+  --accent: oklch(0.85 0.12 85);
+  --accent-foreground: oklch(0.25 0.04 50);
+
+  /* Destructive: Muted Red */
+  --destructive: oklch(0.6 0.18 25);
+  --destructive-foreground: oklch(0.98 0.01 100);
+
+  /* Border & Input: Soft Earthy Grey */
+  --border: oklch(0.88 0.04 95);
+  --input: oklch(0.88 0.04 95);
+  --ring: oklch(0.45 0.14 145);
+
+  /* Charts: Earthy tones */
+  --chart-1: oklch(0.45 0.14 145);
+  /* Forest Green */
+  --chart-2: oklch(0.65 0.16 130);
+  /* Fresh Green */
+  --chart-3: oklch(0.75 0.15 85);
+  /* Harvest Gold */
+  --chart-4: oklch(0.6 0.12 50);
+  /* Earth Brown */
+  --chart-5: oklch(0.7 0.15 40);
+  /* Terracotta */
+
+  --sidebar: oklch(0.96 0.02 100);
+  --sidebar-foreground: oklch(0.25 0.04 50);
+  --sidebar-primary: oklch(0.45 0.14 145);
+  --sidebar-primary-foreground: oklch(0.98 0.01 100);
+  --sidebar-accent: oklch(0.92 0.06 145);
+  --sidebar-accent-foreground: oklch(0.35 0.08 145);
+  --sidebar-border: oklch(0.88 0.04 95);
+  --sidebar-ring: oklch(0.45 0.14 145);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Farm Theme - Dark Mode (Night Forest) */
+  /* Background: Deep Dark Green/Brown */
+  --background: oklch(0.15 0.04 145);
+  /* Foreground: Soft Cream */
+  --foreground: oklch(0.95 0.02 100);
+
+  /* Card: Slightly lighter dark green */
+  --card: oklch(0.2 0.05 145);
+  --card-foreground: oklch(0.95 0.02 100);
+
+  --popover: oklch(0.2 0.05 145);
+  --popover-foreground: oklch(0.95 0.02 100);
+
+  /* Primary: Vibrant Sprout Green */
+  --primary: oklch(0.65 0.18 145);
+  --primary-foreground: oklch(0.15 0.04 145);
+
+  /* Secondary: Dark Moss */
+  --secondary: oklch(0.3 0.08 145);
+  --secondary-foreground: oklch(0.95 0.02 100);
+
+  /* Muted: Dark Earthy Grey */
+  --muted: oklch(0.25 0.04 145);
+  --muted-foreground: oklch(0.7 0.04 145);
+
+  /* Accent: Deep Gold */
+  --accent: oklch(0.35 0.1 85);
+  --accent-foreground: oklch(0.95 0.02 100);
+
+  /* Destructive */
+  --destructive: oklch(0.4 0.15 25);
+  --destructive-foreground: oklch(0.95 0.02 100);
+
+  /* Border & Input */
+  --border: oklch(0.3 0.05 145);
+  --input: oklch(0.3 0.05 145);
+  --ring: oklch(0.5 0.15 145);
+
+  /* Charts */
+  --chart-1: oklch(0.65 0.18 145);
+  --chart-2: oklch(0.5 0.15 130);
+  --chart-3: oklch(0.75 0.15 85);
+  --chart-4: oklch(0.6 0.12 50);
+  --chart-5: oklch(0.7 0.15 40);
+
+  --sidebar: oklch(0.18 0.05 145);
+  --sidebar-foreground: oklch(0.95 0.02 100);
+  --sidebar-primary: oklch(0.65 0.18 145);
+  --sidebar-primary-foreground: oklch(0.15 0.04 145);
+  --sidebar-accent: oklch(0.3 0.08 145);
+  --sidebar-accent-foreground: oklch(0.95 0.02 100);
+  --sidebar-border: oklch(0.3 0.05 145);
+  --sidebar-ring: oklch(0.5 0.15 145);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Glassmorphism utilities for farm-themed UI */
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+
+  .glass-green {
+    @apply bg-emerald-50/60 backdrop-blur-lg border border-emerald-200/30 shadow-lg;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-emerald-100/50 shadow-lg hover:shadow-xl transition-all duration-300;
   }
 }

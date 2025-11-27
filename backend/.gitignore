@@ -1,33 +1,77 @@
-HELP.md
+# Maven
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.properties
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
+# Gradle (if used)
+.gradle
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# Spring Boot
+HELP.md
 .springBeans
 .sts4-cache
+spring-boot-*.log
 
-### IntelliJ IDEA ###
-.idea
+# STS (Spring Tool Suite)
+.apt_generated
+.factorypath
+
+# IntelliJ IDEA
 *.iws
 *.iml
 *.ipr
+out/
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+# Database
+*.db
+*.sqlite
+*.h2.db
+*.mv.db
+*.trace.db
+
+# Application Properties (sensitive)
+application-local.properties
+application-dev.properties
+application-prod.properties
+
+# Test Coverage
+*.exec
+.jacoco/
+
+# Compiled Class Files
+*.class
