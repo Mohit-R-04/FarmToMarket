@@ -4,7 +4,7 @@ import { useClerk } from '@clerk/clerk-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, Sprout, DollarSign } from 'lucide-react';
+import { LogOut, Sprout, DollarSign, TrendingUp } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { BatchCreator } from '@/components/farmer/BatchCreator';
 import { BatchList } from '@/components/farmer/BatchList';
@@ -12,6 +12,8 @@ import { TransporterList, type TransporterListRef } from '@/components/farmer/Tr
 import { SellerList, type SellerListRef } from '@/components/farmer/SellerList';
 import { BookingManager, type BookingManagerRef } from '@/components/farmer/BookingManager';
 import { FarmerRevenue } from '@/components/farmer/FarmerRevenue';
+import { CropRecommendation } from '@/components/farmer/CropRecommendation';
+import { YieldPrediction } from '@/components/farmer/YieldPrediction';
 import { ProfileEditor } from '@/components/profile/ProfileEditor';
 import type { FarmerData } from '@/types/auth';
 import type { Product } from '@/types/product';
@@ -150,8 +152,8 @@ export function FarmerDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-gray-950 dark:via-black dark:to-gray-900 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.1),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.15),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(5,150,105,0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(5,150,105,0.12),transparent_50%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.1),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.15),transparent_50%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(5,150,105,0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(5,150,105,0.12),transparent_50%)] pointer-events-none"></div>
 
       <header className="glass-green dark:bg-gray-950/80 border-b border-emerald-200/50 dark:border-emerald-700/30 shadow-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -172,7 +174,7 @@ export function FarmerDashboard() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 relative z-10">
         {/* Farmer Information */}
         <Card>
           <CardHeader>
@@ -234,16 +236,30 @@ export function FarmerDashboard() {
         {/* Booking Manager */}
         <BookingManager ref={bookingManagerRef} products={batches} />
 
-        {/* Revenue Section */}
+        {/* ML & Revenue Section */}
         <Tabs defaultValue="revenue" className="w-full mt-8">
           <TabsList className="w-full justify-start">
             <TabsTrigger value="revenue" className="flex items-center gap-2">
               <DollarSign className="h-4 w-4" />
               Revenue History
             </TabsTrigger>
+            <TabsTrigger value="crop-recommendation" className="flex items-center gap-2">
+              <Sprout className="h-4 w-4" />
+              Crop Recommendation
+            </TabsTrigger>
+            <TabsTrigger value="yield-prediction" className="flex items-center gap-2">
+              <TrendingUp className="h-4 w-4" />
+              Yield Prediction
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="revenue">
             <FarmerRevenue />
+          </TabsContent>
+          <TabsContent value="crop-recommendation">
+            <CropRecommendation />
+          </TabsContent>
+          <TabsContent value="yield-prediction">
+            <YieldPrediction />
           </TabsContent>
         </Tabs>
       </main>

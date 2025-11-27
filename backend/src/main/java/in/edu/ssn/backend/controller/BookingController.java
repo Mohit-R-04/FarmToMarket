@@ -171,10 +171,9 @@ public class BookingController {
                         product.setStatus("AT_SELLER");
                         product.setCurrentLocation(product.getSellerLocation());
 
-                        // Update price to seller's price after transportation
-                        if (product.getSellerPrice() != null) {
-                            product.setFarmerPrice(product.getSellerPrice());
-                        }
+                        // Note: farmerPrice is already set when seller request was accepted
+                        // It represents the charge per unit that farmer pays to seller
+                        // We should NOT overwrite it here
 
                         // Update Journey
                         try {

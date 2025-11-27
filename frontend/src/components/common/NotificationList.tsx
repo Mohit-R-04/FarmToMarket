@@ -12,7 +12,7 @@ export default function NotificationList({ onClose }: NotificationListProps) {
 
     if (notifications.length === 0) {
         return (
-            <div className="p-8 text-center text-slate-400">
+            <div className="p-8 text-center text-slate-500 dark:text-slate-400">
                 <p>No notifications yet</p>
             </div>
         );
@@ -55,8 +55,8 @@ export default function NotificationList({ onClose }: NotificationListProps) {
                             )}
                         </div>
                         <div className="flex-1">
-                            <p className="text-sm text-slate-200">{notification.message}</p>
-                            <p className="text-xs text-slate-500 mt-1">
+                            <p className="text-sm text-slate-900 dark:text-slate-200">{notification.message}</p>
+                            <p className="text-xs text-slate-600 dark:text-slate-500 mt-1">
                                 {new Date(notification.createdAt).toLocaleString()}
                             </p>
 

@@ -5,6 +5,7 @@ import in.edu.ssn.backend.repository.TransporterRequestRepository;
 import in.edu.ssn.backend.repository.BookingRepository;
 import in.edu.ssn.backend.repository.NotificationRepository;
 import in.edu.ssn.backend.repository.ProductRepository;
+import in.edu.ssn.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,63 @@ public class AdminController {
 
     @Autowired
     private NotificationRepository notificationRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping("/clear-all-data")
+    @Transactional
+    public Map<String, Object> clearAllData() {
+        Map<String, Object> response = new HashMap<>();
+        Map<String, Long> deletedCounts = new HashMap<>();
+
+        try {
+            // Delete in order to respect foreign key constraints
+            // 1. Delete bookings first (references products)
+            long bookingsCount = bookingRepository.count();
+            bookingRepository.deleteAll();
+            deletedCounts.put("bookings", bookingsCount);
+
+            // 2. Delete notifications (may reference various entities)
+            long notificationsCount = notificationRepository.count();
+            notificationRepository.deleteAll();
+            deletedCounts.put("notifications", notificationsCount);
+
+            // 3. Delete seller requests (references products)
+            long sellerRequestsCount = sellerRequestRepository.count();
+            sellerRequestRepository.deleteAll();
+            deletedCounts.put("sellerRequests", sellerRequestsCount);
+
+            // 4. Delete transporter requests (references products)
+            long transporterRequestsCount = transporterRequestRepository.count();
+            transporterRequestRepository.deleteAll();
+            deletedCounts.put("transporterRequests", transporterRequestsCount);
+
+            // 5. Delete products
+            long productsCount = productRepository.count();
+            productRepository.deleteAll();
+            deletedCounts.put("products", productsCount);
+
+            // 6. Delete users (should be last)
+            long usersCount = userRepository.count();
+            userRepository.deleteAll();
+            deletedCounts.put("users", usersCount);
+
+            long totalDeleted = deletedCounts.values().stream().mapToLong(Long::longValue).sum();
+
+            response.put("success", true);
+            response.put("message", "All data cleared successfully");
+            response.put("totalRecordsDeleted", totalDeleted);
+            response.put("deletedByTable", deletedCounts);
+            return response;
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            response.put("message", "Failed to clear database: " + e.getMessage());
+            return response;
+        }
+    }
 
     @PostMapping("/cleanup-orphaned-data")
     @Transactional

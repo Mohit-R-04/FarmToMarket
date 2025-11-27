@@ -34,14 +34,9 @@ export function SalesHistory() {
 
             allProducts.forEach((product: Product) => {
                 if (product.sellerId === user.id && product.journey) {
-                    // Determine the best available price for this product (BATCH TOTAL REVENUE for Seller)
-                    // 1. Product's stored farmerPrice (this is what farmer pays seller)
-                    // 2. Price from the original SellerRequest (recovered from DB)
-                    // 3. Fallback to 0
-                    const batchTotalRevenue = product.farmerPrice || priceMap.get(product.id) || 0;
-
-                    // Calculate revenue per unit (Batch Revenue / Total Batch Quantity)
-                    const revenuePerUnit = product.quantity > 0 ? (batchTotalRevenue / product.quantity) : 0;
+                    // farmerPrice is the PRICE PER UNIT that the farmer pays to the seller
+                    // This is the seller's charge per kg/unit
+                    const chargePerUnit = product.farmerPrice || priceMap.get(product.id) || 0;
 
                     product.journey.forEach((step) => {
                         if (step.type === 'SELLER' && (step.status === 'SOLD' || step.status === 'PARTIALLY_SOLD')) {
@@ -59,8 +54,8 @@ export function SalesHistory() {
                             // If soldQty is still not found, default to 0 to avoid NaN
                             soldQty = soldQty || 0;
 
-                            // Calculate revenue for this specific sale: Revenue Per Unit * Sold Quantity
-                            const saleRevenue = revenuePerUnit * soldQty;
+                            // Calculate revenue for this specific sale: Charge Per Unit * Sold Quantity
+                            const saleRevenue = chargePerUnit * soldQty;
 
                             salesEvents.push({
                                 id: step.id,
@@ -70,6 +65,7 @@ export function SalesHistory() {
                                 quantity: soldQty,
                                 unit: product.unit,
                                 price: saleRevenue, // Store the calculated REVENUE for this transaction
+                                chargePerUnit: chargePerUnit, // Store the per-unit charge for display
                                 status: step.status,
                                 originalProduct: product
                             });
@@ -150,7 +146,7 @@ export function SalesHistory() {
                                 <div className="text-right">
                                     <p className="font-bold text-emerald-600">₹{event.price?.toFixed(2)}</p>
                                     <p className="text-xs text-muted-foreground">
-                                        Sold: {event.quantity} {event.unit}
+                                        {event.quantity} {event.unit} × ₹{event.chargePerUnit?.toFixed(2)}/{event.unit}
                                     </p>
                                 </div>
                             </div>

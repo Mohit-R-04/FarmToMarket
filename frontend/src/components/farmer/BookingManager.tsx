@@ -108,11 +108,18 @@ export const BookingManager = forwardRef<BookingManagerRef, BookingManagerProps>
 
   const RequestCard = ({ request }: { request: any }) => {
     let displayStatus = request.status;
-    let statusColorClass = request.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' :
-      request.status === 'ACCEPTED' ? 'bg-green-100 text-green-800' :
-        'bg-red-100 text-red-800';
-    let Icon = request.status === 'PENDING' ? Clock :
-      request.status === 'ACCEPTED' ? CheckCircle : XCircle;
+    let statusColorClass =
+      request.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' :
+        request.status === 'ACCEPTED' ? 'bg-green-100 text-green-800' :
+          request.status === 'TRANSPORTED' ? 'bg-green-100 text-green-800' :
+            request.status === 'COMPLETED' ? 'bg-green-100 text-green-800' :
+              request.status === 'PICKED_UP' ? 'bg-blue-100 text-blue-800' :
+                'bg-red-100 text-red-800'; // REJECTED, CANCELLED, etc.
+
+    let Icon =
+      request.status === 'PENDING' ? Clock :
+        (request.status === 'ACCEPTED' || request.status === 'TRANSPORTED' || request.status === 'COMPLETED') ? CheckCircle :
+          XCircle;
 
     // Custom status logic for Accepted Seller Requests
     if (request.type === 'SELLER' && request.status === 'ACCEPTED') {

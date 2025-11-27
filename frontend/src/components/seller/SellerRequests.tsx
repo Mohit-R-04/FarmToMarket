@@ -59,7 +59,7 @@ export function SellerRequests() {
           location: (user?.roleData as any)?.address || '',
         };
 
-        // Find the request object to get the sellingPrice
+        // Find the request object to get the sellingPrice and farmerPrice
         const request = requests.find(r => r.id === requestId);
 
         await updateProduct(productId, {
@@ -67,7 +67,8 @@ export function SellerRequests() {
           sellerName: (user?.roleData as any)?.shopName || 'Unknown Seller',
           sellerLocation: (user?.roleData as any)?.address || '',
           status: 'ASSIGNED_TO_SELLER',
-          sellerPrice: request?.sellingPrice, // Save the selling price from the request
+          sellerPrice: request?.sellingPrice, // Save the selling price from the request (what seller charges customers)
+          farmerPrice: request?.farmerPrice, // Save the farmer's charge (what farmer pays seller per unit)
           journey: [...(product.journey || []), newJourneyStep]
         });
 

@@ -30,10 +30,13 @@ export function TransporterRevenue() {
 
             const revenueEvents: any[] = [];
             let calculatedTotal = 0;
-            const pricePerKm = roleData?.expectedChargePerKm || 0;
 
             myCompletedBookings.forEach((booking) => {
-                const revenue = (booking.kilometers || 0) * pricePerKm;
+                // Use the actual agreed charge from the booking
+                // Priority: transporterCharge (if transporter negotiated) > farmerDemandedCharge (farmer's offer)
+                const agreedChargePerKm = booking.transporterCharge || booking.farmerDemandedCharge || 0;
+
+                const revenue = (booking.kilometers || 0) * agreedChargePerKm;
                 calculatedTotal += revenue;
 
                 revenueEvents.push({
@@ -41,7 +44,7 @@ export function TransporterRevenue() {
                     batchId: booking.batchId,
                     date: booking.transportDate || booking.createdAt,
                     kilometers: booking.kilometers,
-                    pricePerKm: pricePerKm,
+                    pricePerKm: agreedChargePerKm,
                     revenue: revenue,
                     farmerId: booking.farmerId
                 });
@@ -153,7 +156,7 @@ export function TransporterRevenue() {
                     <div>
                         <p className="text-sm text-muted-foreground">Total Earnings</p>
                         <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">₹{totalRevenue.toFixed(2)}</p>
-                        <p className="text-xs text-muted-foreground">Rate: ₹{roleData?.expectedChargePerKm || 0}/km</p>
+                        <p className="text-xs text-muted-foreground">Based on agreed charges per booking</p>
                     </div>
                 </div>
 
