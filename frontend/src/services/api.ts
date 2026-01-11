@@ -1,8 +1,11 @@
 // Centralized API service for backend calls
 export const API_BASE = 'http://localhost:8080/api';
 
-export async function getProducts() {
-  const res = await fetch(`${API_BASE}/products`);
+export async function getProducts(farmerId?: string) {
+  const url = farmerId
+    ? `${API_BASE}/products?farmerId=${farmerId}`
+    : `${API_BASE}/products`;
+  const res = await fetch(url);
   return res.json();
 }
 

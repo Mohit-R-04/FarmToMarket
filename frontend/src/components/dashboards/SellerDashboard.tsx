@@ -34,8 +34,8 @@ export function SellerDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 dark:from-emerald-400 dark:to-green-400 bg-clip-text text-transparent">🏪 Seller Dashboard</h1>
-              <p className="text-sm text-emerald-700/70 dark:text-emerald-300/70">Welcome back, {roleData?.shopName || user?.email || user?.phone}</p>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">🏪 Seller Dashboard</h1>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Welcome back, {roleData?.shopName || user?.email || user?.phone}</p>
             </div>
             <div className="flex items-center gap-2">
               <NotificationBell />

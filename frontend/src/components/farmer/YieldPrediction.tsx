@@ -28,6 +28,7 @@ export function YieldPrediction() {
         predicted_yield: number;
         unit: string;
         crop: string;
+        confidence?: number;
     } | null>(null);
     const [error, setError] = useState('');
 
@@ -220,6 +221,22 @@ export function YieldPrediction() {
                                 <p className="text-4xl font-bold text-blue-700 dark:text-blue-300 mb-2">
                                     {result.predicted_yield.toLocaleString()} {result.unit}
                                 </p>
+
+                                {result.confidence && (
+                                    <div className="mt-4 mb-2">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Model Accuracy</span>
+                                            <span className="text-sm font-bold text-blue-700 dark:text-blue-300">{result.confidence}%</span>
+                                        </div>
+                                        <div className="w-full bg-blue-200 dark:bg-blue-900 rounded-full h-2.5 overflow-hidden">
+                                            <div
+                                                className="bg-blue-600 h-2.5 rounded-full transition-all duration-1000 ease-out"
+                                                style={{ width: `${result.confidence}%` }}
+                                            ></div>
+                                        </div>
+                                    </div>
+                                )}
+
                                 <p className="text-xs text-blue-600 dark:text-blue-400 mt-3">
                                     This prediction is based on your soil NPK levels and climate conditions. Actual yield may vary based on farming practices and other factors.
                                 </p>

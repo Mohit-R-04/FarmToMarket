@@ -16,6 +16,7 @@ export interface TransporterData {
   vehicleType: string;
   vehicleNumber: string;
   license: string;
+  location?: string; // Base location or operating area
   expectedChargePerKm?: number; // Expected charge per kilometer
   // Note: Transporter gets charges for transporting goods between locations
 }

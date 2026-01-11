@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { LocationAutocomplete } from '@/components/ui/LocationAutocomplete';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Loader2 } from 'lucide-react';
 import type { FarmerData, SellerData, TransporterData, RoleData } from '@/types/auth';
@@ -102,13 +103,12 @@ export function ProfileEditor({ open, onClose, onSuccess }: ProfileEditorProps) 
                         error={errors.name}
                         disabled={loading}
                     />
-                    <Input
+                    <LocationAutocomplete
                         label="Location"
-                        type="text"
                         placeholder="Enter farm location"
                         value={data.location || ''}
-                        onChange={(e) => {
-                            setFormData({ ...formData, location: e.target.value });
+                        onChange={(value) => {
+                            setFormData({ ...formData, location: value });
                             setErrors({ ...errors, location: '' });
                         }}
                         error={errors.location}
@@ -144,13 +144,12 @@ export function ProfileEditor({ open, onClose, onSuccess }: ProfileEditorProps) 
                         error={errors.shopName}
                         disabled={loading}
                     />
-                    <Input
+                    <LocationAutocomplete
                         label="Address"
-                        type="text"
                         placeholder="Enter shop address"
                         value={data.address || ''}
-                        onChange={(e) => {
-                            setFormData({ ...formData, address: e.target.value });
+                        onChange={(value) => {
+                            setFormData({ ...formData, address: value });
                             setErrors({ ...errors, address: '' });
                         }}
                         error={errors.address}
@@ -196,6 +195,17 @@ export function ProfileEditor({ open, onClose, onSuccess }: ProfileEditorProps) 
                             setErrors({ ...errors, license: '' });
                         }}
                         error={errors.license}
+                        disabled={loading}
+                    />
+                    <LocationAutocomplete
+                        label="Base Location (Optional)"
+                        placeholder="Enter your operating area"
+                        value={data.location || ''}
+                        onChange={(value) => {
+                            setFormData({ ...formData, location: value });
+                            setErrors({ ...errors, location: '' });
+                        }}
+                        error={errors.location}
                         disabled={loading}
                     />
                     <Input

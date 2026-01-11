@@ -188,9 +188,21 @@ export function CropRecommendation() {
                                     {result.recommendation}
                                 </p>
                                 {result.confidence && (
-                                    <p className="text-sm text-green-700 dark:text-green-300">
-                                        Confidence: <span className="font-semibold">{result.confidence}%</span>
-                                    </p>
+                                    <div className="mt-4">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <span className="text-sm font-medium text-green-700 dark:text-green-300">Model Confidence</span>
+                                            <span className="text-sm font-bold text-green-700 dark:text-green-300">{result.confidence}%</span>
+                                        </div>
+                                        <div className="w-full bg-green-200 dark:bg-green-900 rounded-full h-2.5 overflow-hidden">
+                                            <div
+                                                className="bg-green-600 h-2.5 rounded-full transition-all duration-1000 ease-out"
+                                                style={{ width: `${result.confidence}%` }}
+                                            ></div>
+                                        </div>
+                                        <p className="text-xs text-green-600 dark:text-green-400 mt-2">
+                                            High confidence indicates strong pattern matching with historical data.
+                                        </p>
+                                    </div>
                                 )}
                                 <p className="text-xs text-green-600 dark:text-green-400 mt-3">
                                     This recommendation is based on your soil NPK levels and climate conditions.

@@ -41,7 +41,8 @@ export function FarmerDashboard() {
   // Load batches on mount
   useEffect(() => {
     async function fetchProducts() {
-      const products = await getProducts();
+      if (!user?.id) return;
+      const products = await getProducts(user.id); // Filter by farmer ID
       setBatches(products);
     }
     fetchProducts();
@@ -71,9 +72,11 @@ export function FarmerDashboard() {
     // 3. Update product with QR code
     await updateProduct(createdProduct.id, { qrCode });
 
-    // 4. Refresh list
-    const products = await getProducts();
-    setBatches(products);
+    // 4. Refresh list (filtered by farmer ID)
+    if (user?.id) {
+      const products = await getProducts(user.id);
+      setBatches(products);
+    }
   };
 
   const handleBookTransporter = async (transporterId: string, charge: number, selectedSellerId?: string, product?: Product, transportDate?: string) => {
@@ -159,8 +162,8 @@ export function FarmerDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 dark:from-emerald-400 dark:to-green-400 bg-clip-text text-transparent">🌾 Farmer Dashboard</h1>
-              <p className="text-sm text-emerald-700/70 dark:text-emerald-300/70">Welcome back, {roleData?.name || user?.email || user?.phone}</p>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">🌾 Farmer Dashboard</h1>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Welcome back, {roleData?.name || user?.email || user?.phone}</p>
             </div>
             <div className="flex items-center gap-2">
               <NotificationBell />

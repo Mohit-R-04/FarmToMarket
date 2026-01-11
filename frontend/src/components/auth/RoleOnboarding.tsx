@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useUser } from '@clerk/clerk-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { LocationAutocomplete } from '@/components/ui/LocationAutocomplete';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
 import type { UserRole, FarmerData, SellerData, TransporterData } from '@/types/auth';
@@ -117,7 +118,7 @@ export function RoleOnboarding() {
     } else if (role === 'SELLER') {
       setRoleData({ shopName: '', address: '' });
     } else if (role === 'TRANSPORTER') {
-      setRoleData({ vehicleType: '', vehicleNumber: '', license: '', expectedChargePerKm: undefined });
+      setRoleData({ vehicleType: '', vehicleNumber: '', license: '', location: '', expectedChargePerKm: undefined });
     }
 
     setStep('details');
@@ -264,13 +265,12 @@ export function RoleOnboarding() {
                         error={errors.name}
                         disabled={loading}
                       />
-                      <Input
+                      <LocationAutocomplete
                         label="Location"
-                        type="text"
                         placeholder="Enter farm location"
                         value={(roleData as FarmerData).location}
-                        onChange={(e) => {
-                          setRoleData({ ...roleData, location: e.target.value });
+                        onChange={(value) => {
+                          setRoleData({ ...roleData, location: value });
                           setErrors({ ...errors, location: '' });
                         }}
                         error={errors.location}
@@ -308,13 +308,12 @@ export function RoleOnboarding() {
                         error={errors.shopName}
                         disabled={loading}
                       />
-                      <Input
+                      <LocationAutocomplete
                         label="Address"
-                        type="text"
                         placeholder="Enter shop address"
                         value={(roleData as SellerData).address}
-                        onChange={(e) => {
-                          setRoleData({ ...roleData, address: e.target.value });
+                        onChange={(value) => {
+                          setRoleData({ ...roleData, address: value });
                           setErrors({ ...errors, address: '' });
                         }}
                         error={errors.address}
@@ -359,6 +358,17 @@ export function RoleOnboarding() {
                           setErrors({ ...errors, license: '' });
                         }}
                         error={errors.license}
+                        disabled={loading}
+                      />
+                      <LocationAutocomplete
+                        label="Base Location (Optional)"
+                        placeholder="Enter your operating area"
+                        value={(roleData as TransporterData).location || ''}
+                        onChange={(value) => {
+                          setRoleData({ ...roleData, location: value });
+                          setErrors({ ...errors, location: '' });
+                        }}
+                        error={errors.location}
                         disabled={loading}
                       />
                       <Input
